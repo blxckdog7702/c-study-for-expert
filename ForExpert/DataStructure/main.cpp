@@ -1,8 +1,8 @@
-#include <stdio.h>
-
-using namespace std;
-
-int main() {
-	printf("Hello World!");
-	return 0;
-}
+//#include <stdio.h>
+//
+//using namespace std;
+//
+//int main() {
+//	printf("Hello World!");
+//	return 0;
+//}

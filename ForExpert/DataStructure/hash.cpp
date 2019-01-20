@@ -33,6 +33,7 @@ int find(const char *key, char *data) {
 			strcpy(data, tb[h].data);
 			return 1;
 		}
+
 		h = (h + 1) % MAX_TABLE;
 
 	}
@@ -43,34 +44,49 @@ int add(const char *key, char *data) {
 	unsigned long h = hash(key);
 
 	while (tb[h].key[0] != 0) {
+		//collision case
+		
+		//same case
 		if (strcmp(tb[h].key, key) == 0) {
 			return 0;
 		}
 
+		//open addressing
 		h = (h + 1) % MAX_TABLE;
 	}
+	printf("성공적인 입력");
 	strcpy(tb[h].key, key);
 	strcpy(tb[h].data, data);
+	return 1;
 }
 
 int main() {
 	int T, N, Q;
 
+	//test case
+	printf("input testcase");
 	scanf("%d", &T);
 
 	for (int test_case = 1; test_case <= T; test_case++) {
+		//0으로 전부 초기화
 		memset(tb, 0, sizeof(tb));
+
+		//input data 횟수
+		printf("num of input data?");
 		scanf("%d", &N);
 		char k[MAX_KEY + 1];
 		char d[MAX_DATA + 1];
 
 		for (int i = 0; i < N; i++) {
-			scanf("%s %s\n", &k, &d);
+			//printf("!!");
+			scanf( "%s %s\n", k, d);
+			//printf("%s %s\n", k, d);
 			add(k, d);
 		}
 
 		printf("#%d\n", test_case);
 
+		//query 횟수
 		scanf("%d", &Q);
 
 		for (int i = 0; i < Q; i++) {
@@ -80,14 +96,12 @@ int main() {
 			scanf("%s\n", &k);
 
 			if (find(k, d)) {
-				printf("%s", d);
+				printf("%s\n", d);
 			}
 			else {
-				printf("404 NOT FOUND");
+				printf("404 NOT FOUND\n");
 			}
 		}
-
 	}
-
 	return 0;
 }

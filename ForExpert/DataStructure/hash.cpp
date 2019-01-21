@@ -1,107 +1,115 @@
-#include<stdio.h>
-#include<string.h>
-#include<memory.h>
+#include <stdio.h>
+#include <string.h>
+#include <memory.h>
 
 #define MAX_KEY 64
 #define MAX_DATA 128
 #define MAX_TABLE 4096
 
-typedef struct {
+typedef struct
+{
 	char key[MAX_KEY + 1];
 	char data[MAX_DATA + 1];
 }Hash;
-
 Hash tb[MAX_TABLE];
 
-unsigned long hash(const char *str) {
+unsigned long hash(const char *str)
+{
 	unsigned long hash = 5381;
 	int c;
 
-	while (c = *str++) {
+	while (c = *str++)
+	{
 		hash = (((hash << 5) + hash) + c) % MAX_TABLE;
 	}
 
 	return hash % MAX_TABLE;
 }
 
-int find(const char *key, char *data) {
+int find(const char *key, char *data)
+{
 	unsigned long h = hash(key);
 	int cnt = MAX_TABLE;
 
-	while (tb[h].key[0] != 0 && cnt--) {
-		if (strcmp(tb[h].key, key) == 0) {
+	while (tb[h].key[0] != 0 && cnt--)
+	{
+		if (strcmp(tb[h].key, key) == 0)
+		{
 			strcpy(data, tb[h].data);
 			return 1;
 		}
-
 		h = (h + 1) % MAX_TABLE;
-
 	}
 	return 0;
 }
 
-int add(const char *key, char *data) {
+int add(const char *key, char *data)
+{
 	unsigned long h = hash(key);
 
-	while (tb[h].key[0] != 0) {
-		//collision case
-		
-		//same case
-		if (strcmp(tb[h].key, key) == 0) {
+	while (tb[h].key[0] != 0)
+	{
+		if (
+			strcmp(tb[h].key, key) == 0)
+		{
 			return 0;
 		}
 
-		//open addressing
 		h = (h + 1) % MAX_TABLE;
 	}
-	printf("성공적인 입력");
 	strcpy(tb[h].key, key);
 	strcpy(tb[h].data, data);
 	return 1;
 }
 
-int main() {
-	int T, N, Q;
+int main()
+{
+	int T, N, Q = 0;
 
-	//test case
-	printf("input testcase");
+	printf("Test case? : ");
 	scanf("%d", &T);
 
-	for (int test_case = 1; test_case <= T; test_case++) {
-		//0으로 전부 초기화
+	for (int test_case = 1; test_case <= T; test_case++)
+	{
 		memset(tb, 0, sizeof(tb));
 
-		//input data 횟수
-		printf("num of input data?");
+		printf("Number of input data? : ");
 		scanf("%d", &N);
 		char k[MAX_KEY + 1];
 		char d[MAX_DATA + 1];
 
-		for (int i = 0; i < N; i++) {
-			//printf("!!");
-			scanf( "%s %s\n", k, d);
-			//printf("%s %s\n", k, d);
+		printf("input data like (str, str)\n");
+
+		for (int i = 0; i < N; i++)
+		{
+			scanf("%s %s", &k, &d);
 			add(k, d);
 		}
 
 		printf("#%d\n", test_case);
 
-		//query 횟수
+		printf("Number of query? : ");
 		scanf("%d", &Q);
 
-		for (int i = 0; i < Q; i++) {
+		printf("Input key to find\n");
+
+		for (int i = 0; i < Q; i++)
+		{
 			char k[MAX_KEY + 1];
 			char d[MAX_DATA + 1];
 
-			scanf("%s\n", &k);
+			scanf("%s", &k);
 
-			if (find(k, d)) {
+			if (find(k, d))
+			{
 				printf("%s\n", d);
 			}
-			else {
-				printf("404 NOT FOUND\n");
+			else
+			{
+				printf("not find\n");
 			}
 		}
 	}
+	
 	return 0;
 }

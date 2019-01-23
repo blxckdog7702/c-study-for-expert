@@ -118,6 +118,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="graph.cpp" />
     <ClCompile Include="hash.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="queue.cpp" />

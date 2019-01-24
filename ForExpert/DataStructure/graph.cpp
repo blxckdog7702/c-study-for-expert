@@ -17,12 +17,12 @@ typedef struct
 typedef struct
 {
 	int num_vertices;
-	AdjList * adjListArr;
+	AdjList *adjListArr;
 } Graph;
 
-AdjlistNode * createNode(int v)
+AdjlistNode *createNode(int v)
 {
-	AdjlistNode * newNode = (AdjlistNode *)malloc(sizeof(AdjlistNode));
+	AdjlistNode *newNode = (AdjlistNode *)malloc(sizeof(AdjlistNode));
 
 	newNode->vertex = v;
 	newNode->next = NULL;
@@ -30,10 +30,10 @@ AdjlistNode * createNode(int v)
 	return newNode;
 }
 
-Graph * createGraph(int n)
+Graph *createGraph(int n)
 {
 
-	Graph * graph = (Graph *)malloc(sizeof(Graph));
+	Graph *graph = (Graph *)malloc(sizeof(Graph));
 	graph->num_vertices = n;
 
 	graph->adjListArr = (AdjList *)malloc(n * sizeof(AdjList));
@@ -47,7 +47,7 @@ Graph * createGraph(int n)
 	return graph;
 }
 
-void destroyGraph(Graph * graph)
+void destroyGraph(Graph *graph)
 {
 	if (graph)
 	{
@@ -55,10 +55,10 @@ void destroyGraph(Graph * graph)
 		{
 			for (int v = 0; v < graph->num_vertices; v++)
 			{
-				AdjlistNode * adjListPtr = graph->adjListArr[v].head;
+				AdjlistNode *adjListPtr = graph->adjListArr[v].head;
 				while (adjListPtr)
 				{
-					AdjlistNode * tmp = adjListPtr;
+					AdjlistNode *tmp = adjListPtr;
 					adjListPtr = adjListPtr->next;
 					free(tmp);
 				}
@@ -71,7 +71,7 @@ void destroyGraph(Graph * graph)
 
 void addEdge(Graph *graph, int src, int dest)
 {
-	AdjlistNode * newNode = createNode(dest);
+	AdjlistNode *newNode = createNode(dest);
 	if (graph->adjListArr[src].tail != NULL)
 	{
 		graph->adjListArr[src].tail->next = newNode;
@@ -96,10 +96,10 @@ void addEdge(Graph *graph, int src, int dest)
 	graph->adjListArr[dest].num_members++;
 }
 
-void displayGraph(Graph * graph, int i)
+void displayGraph(Graph *graph, int i)
 {
 
-	AdjlistNode * adjListPtr = graph->adjListArr[i].head;
+	AdjlistNode *adjListPtr = graph->adjListArr[i].head;
 	while (adjListPtr)
 	{
 		printf("%d ", adjListPtr->vertex);
@@ -108,7 +108,7 @@ void displayGraph(Graph * graph, int i)
 	printf("\n");
 }
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
 	int T, V, E, Q, sv, ev;
 
@@ -118,7 +118,7 @@ int main(int argc, char* argv[])
 	{
 		scanf("%d %d %d", &V, &E, &Q);
 
-		Graph * graph = createGraph(V);
+		Graph *graph = createGraph(V);
 
 		for (int i = 0; i < E; i++)
 		{

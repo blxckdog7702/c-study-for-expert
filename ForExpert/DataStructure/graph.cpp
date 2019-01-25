@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <malloc.h>
 
 typedef struct adjlistNode
@@ -53,6 +54,8 @@ void destroyGraph(Graph *graph)
 	{
 		if (graph->adjListArr)
 		{
+//			printf("²ô¾Æ");
+	//		printf("²ó²ó : %d\n", graph->adjListArr);
 			for (int v = 0; v < graph->num_vertices; v++)
 			{
 				AdjlistNode *adjListPtr = graph->adjListArr[v].head;
@@ -72,6 +75,7 @@ void destroyGraph(Graph *graph)
 void addEdge(Graph *graph, int src, int dest)
 {
 	AdjlistNode *newNode = createNode(dest);
+	//¸¶Áö¸·ÀÌ Á¸ÀçÇß´ø °æ¿ì
 	if (graph->adjListArr[src].tail != NULL)
 	{
 		graph->adjListArr[src].tail->next = newNode;
@@ -133,6 +137,9 @@ int main(int argc, char *argv[])
 			displayGraph(graph, sv);
 		}
 	}
+
+	
+	system("Pause");
 
 	return 0;
 }

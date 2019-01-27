@@ -5,6 +5,8 @@
 int heap[MAX_SIZE];
 int heapSize = 0;
 
+// 우선순위 큐는 힙으로 구현
+
 void heapInit(void)
 {
 	heapSize = 0;
@@ -21,8 +23,10 @@ int heapPush(int value)
 	heap[heapSize] = value;
 
 	int current = heapSize;
+	//중간에 있는게 더 크면
 	while (current > 0 && heap[current] < heap[(current - 1) / 2])
 	{
+		//스왑
 		int temp = heap[(current - 1) / 2];
 		heap[(current - 1) / 2] = heap[current];
 		heap[current] = temp;

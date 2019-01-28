@@ -124,6 +124,7 @@
     <ClCompile Include="priorityQueue.cpp" />
     <ClCompile Include="queue.cpp" />
     <ClCompile Include="stack.cpp" />
+    <ClCompile Include="tree.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

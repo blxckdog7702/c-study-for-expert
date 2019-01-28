@@ -33,5 +33,8 @@
     <ClCompile Include="priorityQueue.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="tree.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

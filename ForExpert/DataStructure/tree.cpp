@@ -8,11 +8,13 @@ typedef struct
 	int parent;
 	int child[MAX_CHILD_NUM];
 } TreeNode;
+
 TreeNode tree[MAX_NODE_NUM];
 int nodeNum;
 int edgeNum;
 int root;
 
+// 노드 개수만큼 -1로 초기화
 void initTree(void)
 {
 	int i;
@@ -27,6 +29,7 @@ void initTree(void)
 	}
 }
 
+// 노드값이 -1인 노드(말단노드)를 만날 때까지 탐색하다가 추가
 void addChild(int parent, int child)
 {
 	int i;
@@ -55,6 +58,7 @@ int getRoot(void)
 	return -1;
 }
 
+//전위순회
 void preOrder(int root)
 {
 	int i;

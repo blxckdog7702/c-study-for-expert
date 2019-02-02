@@ -34,9 +34,29 @@ int find(const char *key, char *data)
 
 	while (tb[h].key[0] != 0 && cnt--)
 	{
-
+		if (strcmp(tb[h].key, key) == 0) {
+			strcpy(data, tb[h].data);
+			return 1;
+		}
+		h = (h + 1) % MAX_TABLE;
 	}
+	return 0;
 
+}
+
+int add(const char *key, char *data) {
+	unsigned long h = hash(key);
+
+	while (tb[h].key[0] != 0) {
+		if (strcmp(tb[h].key, key) == 0) {
+			return 0;
+		}
+
+		h = (h + 1) % MAX_TABLE;
+	}
+	strcpy(tb[h].key, key);
+	strcpy(tb[h].data, data);
+	return 1;
 }
 
 int main() {

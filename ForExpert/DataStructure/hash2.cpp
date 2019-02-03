@@ -60,5 +60,48 @@ int add(const char *key, char *data) {
 }
 
 int main() {
+	int T, N, Q = 0;
 
+	printf("test case? : ");
+	scanf("%d", &T);
+
+	for (int test_case = 1; test_case <= T; test_case++)
+	{
+		memset(tb, 0, sizeof(tb));
+		
+		printf("Number of input data? : ");
+		scanf("%d", &N);
+		char k[MAX_KEY + 1];
+		char d[MAX_DATA + 1];
+
+		printf("Input data like (str, str)\n");
+
+		for (int i = 0; i < N; i++) {
+			scanf("%s %s", &k, &d);
+			add(k, d);
+		}
+
+		printf("%d\n", test_case);
+
+		printf("Number of Query? : ");
+		scanf("%d", &Q);
+
+		printf("Input key to want to find");
+		
+		for (int i = 0; i < Q; i++) {
+			char k[MAX_KEY + 1];
+			char d[MAX_DATA + 1];
+
+			scanf("%s", &k);
+
+			if (find(k, d)) {
+				printf("%s\n", d);
+			}
+			else {
+				printf("not found\n");
+			}
+		}
+	}
+
+	return 0;
 }
